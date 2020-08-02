@@ -1,1 +1,33 @@
-<p>task-item works!</p>
+<div>
+  <div
+    fxLayout="row"
+    style="padding: 0px 10px 0px 10px; border: 1px solid black;"
+  >
+    <div
+      fxFlex="50%"
+      fxLayoutAlign="start center"
+      style="height: 100px; border: 1px solid black;"
+    >
+      {{ task.title }}
+    </div>
+    <div
+      fxFlex="25%"
+      fxLayoutAlign="start center"
+      style="height: 100px; border: 1px solid black;"
+    >
+      {{ task.dueBy }}
+    </div>
+    <div
+      fxFlex="25%"
+      fxLayoutAlign="end center"
+      style="height: 100px; border: 1px solid black;"
+    >
+      <button mat-icon-button>
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
