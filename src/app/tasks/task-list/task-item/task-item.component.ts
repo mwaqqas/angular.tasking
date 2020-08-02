@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Task } from './task.model';
+import { Task } from '../../task.model';
+import { TaskService } from '../../task.service';
 
 @Component({
   selector: 'app-task-item',
@@ -8,8 +9,17 @@ import { Task } from './task.model';
 })
 export class TaskItemComponent implements OnInit {
   @Input() task: Task;
+  @Input() index: number;
 
-  constructor() {}
+  constructor(private taskSrv: TaskService) {}
 
   ngOnInit(): void {}
+
+  toggleCompletion(task: Task) {
+    task.completed = !task.completed;
+  }
+
+  onDelete() {
+    this.taskSrv.delete(this.index);
+  }
 }

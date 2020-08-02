@@ -2,42 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
 
-import { Task } from './task-item/task.model';
-
-const sourceTaskList: Task[] = [
-  {
-    id: '1',
-    title: 'Learn Angular',
-    dueBy: '2020-08-04',
-    createdAt: '2020-07-30',
-    completed: false,
-    category: 'green',
-  },
-  {
-    id: '1',
-    title: 'Write Frontend Code',
-    dueBy: '2020-08-04',
-    createdAt: '2020-07-30',
-    completed: false,
-    category: 'green',
-  },
-  {
-    id: '1',
-    title: 'Write Backend Code',
-    dueBy: '2020-08-04',
-    createdAt: '2020-07-30',
-    completed: false,
-    category: 'green',
-  },
-  {
-    id: '1',
-    title: 'App deployment',
-    dueBy: '2020-08-04',
-    createdAt: '2020-07-30',
-    completed: false,
-    category: 'green',
-  },
-];
+import { Task } from '../task.model';
+import { TaskService } from '../task.service';
+import { MatDialog } from '@angular/material/dialog';
+import { TaskEditComponent } from '../task-edit/task-edit.component';
 
 @Component({
   selector: 'app-task-list',
@@ -49,8 +17,12 @@ export class TaskListComponent implements OnInit, OnDestroy {
   isDeviceXs: boolean;
   taskList: Task[];
 
-  constructor(private mediaObserver: MediaObserver) {
-    this.taskList = sourceTaskList;
+  constructor(
+    private mediaObserver: MediaObserver,
+    private taskSrv: TaskService,
+    public dialog: MatDialog
+  ) {
+    this.taskList = taskSrv.taskList;
   }
 
   ngOnInit(): void {
@@ -64,5 +36,14 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.mediaSub.unsubscribe();
+  }
+
+  onAdd() {
+    this.taskSrv.create('test');
+    console.log(this.taskList);
+  }
+
+  openDialog() {
+    this.dialog.open(TaskEditComponent);
   }
 }

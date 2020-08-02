@@ -1,1 +1,25 @@
-<app-task-item [task]="task" *ngFor="let task of taskList"></app-task-item>
+<div [ngStyle]="{ 'margin-top': '20px' }">
+  <div
+    class="content"
+    fxLayout="column"
+    fxLayoutGap="16px"
+    fxLayoutAlign="start center"
+  >
+    <app-task-item
+      fxFlex="grow"
+      [task]="task"
+      [index]="i"
+      *ngFor="let task of taskList; let i = index"
+      [ngStyle.xs]="{ width: '100%' }"
+    ></app-task-item>
+  </div>
+</div>
+<button
+  mat-fab
+  color="accent"
+  aria-label="Example icon button with a bookmark icon"
+  class="add-button"
+  (click)="openDialog()"
+>
+  <mat-icon>add</mat-icon>
+</button>

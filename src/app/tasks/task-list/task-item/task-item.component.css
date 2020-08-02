@@ -1,0 +1,8 @@
+.mat-card {
+  margin: 6px;
+}
+
+.completed {
+  color: grey;
+  text-decoration: line-through;
+}
