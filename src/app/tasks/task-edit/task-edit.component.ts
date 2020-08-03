@@ -9,13 +9,15 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./task-edit.component.css'],
 })
 export class TaskEditComponent implements OnInit {
-  title = new FormControl();
+  title: string;
+  description: string;
+
   constructor(private taskSrv: TaskService) {}
 
   ngOnInit(): void {}
 
-  onAdd() {
+  onSubmit(value) {
+    this.taskSrv.create(value.title, value.description);
     console.log('task added');
-    this.taskSrv.create('test');
   }
 }

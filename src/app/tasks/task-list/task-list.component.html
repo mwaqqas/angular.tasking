@@ -1,4 +1,4 @@
-<div [ngStyle]="{ 'margin-top': '20px' }">
+<!-- <div [ngStyle]="{ 'margin-top': '20px' }">
   <div
     class="content"
     fxLayout="column"
@@ -22,4 +22,44 @@
   (click)="openDialog()"
 >
   <mat-icon>add</mat-icon>
-</button>
+</button> -->
+
+<div>
+  <div>
+    <div class="task-list" cdkDropList (cdkDropListDropped)="drop($event)">
+      <div class="task-item" *ngFor="let task of taskList" cdkDrag>
+        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+
+        <div class="task-title">
+          <button mat-icon-button>
+            <mat-icon>check_circle_outline</mat-icon>
+          </button>
+          {{ task.title }}
+        </div>
+        <div class="task-action-buttons">
+          <button mat-icon-button>
+            <mat-icon>launch</mat-icon>
+          </button>
+          <button mat-icon-button (click)="onDeleteItem()">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <div cdkDragHandle>
+            <button class="task-move-handle" mat-icon-button>
+              <mat-icon>unfold_more</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    mat-fab
+    class="fab-button"
+    color="accent"
+    aria-label="Example icon button with a bookmark icon"
+    class="fab-button"
+    (click)="openDialog()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

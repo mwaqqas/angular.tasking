@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Task } from '../task.model';
 import { TaskService } from '../task.service';
 import { MatDialog } from '@angular/material/dialog';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { TaskEditComponent } from '../task-edit/task-edit.component';
 
 @Component({
@@ -45,5 +46,20 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   openDialog() {
     this.dialog.open(TaskEditComponent);
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(
+      this.taskSrv.taskList,
+      event.previousIndex,
+      event.currentIndex
+    );
+  }
+
+  onDeleteItem(task: Task) {
+    this.taskSrv.delete(task);
+  }
+  itemClick() {
+    console.log('item clicked');
   }
 }

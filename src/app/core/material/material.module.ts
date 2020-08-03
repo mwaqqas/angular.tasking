@@ -8,6 +8,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatListModule } from '@angular/material/list';
 
 const matModules = [
   MatButtonModule,
@@ -18,6 +20,8 @@ const matModules = [
   MatFormFieldModule,
   MatDialogModule,
   MatInputModule,
+  DragDropModule,
+  MatListModule,
 ];
 
 @NgModule({
