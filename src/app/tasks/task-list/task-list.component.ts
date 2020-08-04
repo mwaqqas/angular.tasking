@@ -7,6 +7,7 @@ import { TaskService } from '../task.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { TaskEditComponent } from '../task-edit/task-edit.component';
+import { TaskDetailComponent } from '../task-detail/task-detail.component';
 
 @Component({
   selector: 'app-task-list',
@@ -39,13 +40,28 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.mediaSub.unsubscribe();
   }
 
-  onAdd() {
-    this.taskSrv.create('test');
-    console.log(this.taskList);
+  onTaskStatusToggle(task: Task) {
+    this.taskSrv.toggleTaskStatus(task);
   }
 
-  openDialog() {
-    this.dialog.open(TaskEditComponent);
+  openTaskCreate() {
+    this.dialog.open(TaskEditComponent, {
+      data: {
+        task: {
+          id: '',
+          title: '',
+          description: '',
+          category: '',
+          completed: false,
+        },
+        isEditMode: false,
+      },
+    });
+  }
+
+  launchTaskDetails(task: Task): void {
+    console.log(task);
+    this.dialog.open(TaskDetailComponent, { data: task });
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -59,6 +75,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   onDeleteItem(task: Task) {
     this.taskSrv.delete(task);
   }
+
   itemClick() {
     console.log('item clicked');
   }

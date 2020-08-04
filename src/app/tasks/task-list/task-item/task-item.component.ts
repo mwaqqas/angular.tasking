@@ -20,7 +20,7 @@ export class TaskItemComponent implements OnInit {
     task.completed = !task.completed;
   }
 
-  onDelete() {
-    this.taskSrv.delete(this.index);
+  onDelete(task: Task) {
+    this.taskSrv.delete(task);
   }
 }

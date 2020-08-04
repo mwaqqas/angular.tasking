@@ -1,47 +1,36 @@
-<!-- <div [ngStyle]="{ 'margin-top': '20px' }">
-  <div
-    class="content"
-    fxLayout="column"
-    fxLayoutGap="16px"
-    fxLayoutAlign="start center"
-  >
-    <app-task-item
-      fxFlex="grow"
-      [task]="task"
-      [index]="i"
-      *ngFor="let task of taskList; let i = index"
-      [ngStyle.xs]="{ width: '100%' }"
-    ></app-task-item>
-  </div>
-</div>
-<button
-  mat-fab
-  color="accent"
-  aria-label="Example icon button with a bookmark icon"
-  class="add-button"
-  (click)="openDialog()"
->
-  <mat-icon>add</mat-icon>
-</button> -->
-
-<div>
+<div class="task-list-container">
   <div>
     <div class="task-list" cdkDropList (cdkDropListDropped)="drop($event)">
       <div class="task-item" *ngFor="let task of taskList" cdkDrag>
         <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-
-        <div class="task-title">
-          <button mat-icon-button>
-            <mat-icon>check_circle_outline</mat-icon>
-          </button>
-          {{ task.title }}
+        <div class="task-title-wrapper">
+          <div class="task-status-icon">
+            <button
+              mat-icon-button
+              *ngIf="!task.completed"
+              (click)="onTaskStatusToggle(task)"
+            >
+              <mat-icon>check_circle_outline</mat-icon>
+            </button>
+            <button
+              color="accent"
+              mat-icon-button
+              *ngIf="task.completed"
+              (click)="onTaskStatusToggle(task)"
+            >
+              <mat-icon>check_circle</mat-icon>
+            </button>
+          </div>
+          <div
+            class="task-title"
+            [ngClass]="{ 'completed-task': task.completed }"
+          >
+            {{ task.title }}
+          </div>
         </div>
         <div class="task-action-buttons">
-          <button mat-icon-button>
+          <button mat-icon-button (click)="launchTaskDetails(task)">
             <mat-icon>launch</mat-icon>
-          </button>
-          <button mat-icon-button (click)="onDeleteItem()">
-            <mat-icon>delete</mat-icon>
           </button>
           <div cdkDragHandle>
             <button class="task-move-handle" mat-icon-button>
@@ -54,11 +43,11 @@
   </div>
   <button
     mat-fab
-    class="fab-button"
+    class="fab-button elevation-z8"
     color="accent"
     aria-label="Example icon button with a bookmark icon"
     class="fab-button"
-    (click)="openDialog()"
+    (click)="openTaskCreate()"
   >
     <mat-icon>add</mat-icon>
   </button>

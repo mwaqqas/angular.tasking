@@ -1,30 +1,46 @@
-<div>
+<div class="edit-task-dialog">
   <form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm.value)">
     <h1 mat-dialog-title>Create Task</h1>
-    <div mat-dialog-content>
-      <div>
-        <mat-form-field>
-          <mat-label>Title</mat-label>
-          <input matInput placeholder="title" name="title" ngModel />
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field>
-          <mat-label>Description</mat-label>
-          <textarea
-            matInput
-            name="description"
-            ngModel
-            placeholder="description"
-            cdkAutosizeMinRows="2"
-            cdkAutosizeMaxRows="5"
-          ></textarea>
-        </mat-form-field>
-      </div>
-    </div>
-    <div mat-dialog-actions>
+    <mat-form-field class="task-edit-field">
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        name="title"
+        #title
+        type="text"
+        [ngModel]="task.title"
+        placeholder="title"
+        required
+        maxlength="25"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="task-edit-field">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        name="description"
+        #description
+        [ngModel]="task.description"
+        placeholder="description"
+        maxlength="100"
+        cdkAutosizeMinRows="2"
+        cdkAutosizeMaxRows="5"
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="task-edit-field" style="padding-top: 10px;">
+      <mat-label>Status</mat-label>
+      <mat-select [(ngModel)]="taskStatus" name="status">
+        <mat-option *ngFor="let status of taskStatuses" [value]="status">
+          {{ status }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-dialog-actions>
       <button mat-button mat-dialog-close type="submit">Submit</button>
       <button mat-button mat-dialog-close>Discard</button>
-    </div>
+    </mat-dialog-actions>
   </form>
 </div>

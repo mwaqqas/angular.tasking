@@ -1,0 +1,45 @@
+<div class="edit-task-dialog">
+  <mat-card class="example-card">
+    <mat-card-title style="font-size: 1.3em;">{{ data.title }}</mat-card-title>
+    <mat-card-subtitle *ngIf="data.completed"
+      >Status:
+      <span style="color: green;">
+        Completed
+      </span>
+    </mat-card-subtitle>
+    <mat-card-subtitle *ngIf="!data.completed"
+      >Status: Not Complete</mat-card-subtitle
+    >
+
+    <mat-card-content>
+      <p>
+        {{ data.description }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-icon-button
+        *ngIf="!data.completed"
+        (click)="onTaskStatusToggle(data)"
+      >
+        <mat-icon>check_outline</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        *ngIf="data.completed"
+        (click)="onTaskStatusToggle(data)"
+      >
+        <mat-icon color="accent">check_circle</mat-icon>
+      </button>
+      <button mat-icon-button mat-dialog-close (click)="onTaskStatusEdit(data)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button mat-dialog-close (click)="onTaskDelete(data)">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-icon-button mat-dialog-close>
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

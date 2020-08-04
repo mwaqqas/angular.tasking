@@ -13,6 +13,8 @@ import { HeaderComponent } from './header/header.component';
 import { TaskListComponent } from './tasks/task-list/task-list.component';
 import { CompletedTaskListComponent } from './tasks/completed-task-list/completed-task-list.component';
 import { FormsModule } from '@angular/forms';
+import { TaskDetailComponent } from './tasks/task-detail/task-detail.component';
+import { QuickCreateComponent } from './tasks/quick-create/quick-create.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     TaskListComponent,
     CompletedTaskListComponent,
+    TaskDetailComponent,
+    QuickCreateComponent,
   ],
   imports: [
     BrowserModule,

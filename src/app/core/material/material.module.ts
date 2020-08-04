@@ -10,6 +10,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
 
 const matModules = [
   MatButtonModule,
@@ -22,6 +23,7 @@ const matModules = [
   MatInputModule,
   DragDropModule,
   MatListModule,
+  MatSelectModule,
 ];
 
 @NgModule({
