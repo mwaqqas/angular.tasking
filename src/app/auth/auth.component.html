@@ -1,0 +1,70 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+  <div fxFlex class="auth-form">
+    <div>
+      <h3 style="text-align: center;">TASKING APP</h3>
+      <p style="text-align: center;">Made in Angular</p>
+      <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm.value)">
+        <div>
+          <mat-form-field appearance="outline" class="auth-form-field">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              placeholder="user@example.com"
+              required
+              type="email"
+              #email
+              name="email"
+            />
+            <mat-hint>hint</mat-hint>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" class="auth-form-field">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              placeholder="password"
+              required
+              type="password"
+              minlength="6"
+              #password
+              name="password"
+            />
+            <mat-hint>Minimum password length is 6 characters.</mat-hint>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" style="margin-top: 20px;">
+          <button
+            mat-raised-button
+            color="accent"
+            fxFlex
+            type="submit"
+            *ngIf="isSignInMode"
+          >
+            Sign In
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            fxFlex
+            type="submit"
+            *ngIf="!isSignInMode"
+          >
+            Sign Up
+          </button>
+        </div>
+        <div style="margin-top: 10px; font-size: small;">
+          <a [routerLink]="" (click)="toggleSignInButton()" *ngIf="isSignInMode"
+            >Sign up if you don't have an account</a
+          >
+          <a
+            [routerLink]=""
+            (click)="toggleSignInButton()"
+            *ngIf="!isSignInMode"
+            >Sign in if you already have an account</a
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

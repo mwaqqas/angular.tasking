@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { TaskEditComponent } from '../task-edit/task-edit.component';
 import { TaskDetailComponent } from '../task-detail/task-detail.component';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-task-list',
@@ -18,16 +19,20 @@ export class TaskListComponent implements OnInit, OnDestroy {
   mediaSub: Subscription;
   isDeviceXs: boolean;
   taskList: Task[];
+  isLoggedIn: boolean;
 
   constructor(
     private mediaObserver: MediaObserver,
     private taskSrv: TaskService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private authSrv: AuthService
   ) {
     this.taskList = taskSrv.taskList;
   }
 
   ngOnInit(): void {
+    console.log(`is logged in? ${this.authSrv.getLoginStatus()}`);
+
     this.mediaSub = this.mediaObserver.media$.subscribe(
       (result: MediaChange) => {
         this.isDeviceXs = result.mqAlias === 'xs' ? true : false;

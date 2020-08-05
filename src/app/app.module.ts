@@ -14,7 +14,7 @@ import { TaskListComponent } from './tasks/task-list/task-list.component';
 import { CompletedTaskListComponent } from './tasks/completed-task-list/completed-task-list.component';
 import { FormsModule } from '@angular/forms';
 import { TaskDetailComponent } from './tasks/task-detail/task-detail.component';
-import { QuickCreateComponent } from './tasks/quick-create/quick-create.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { QuickCreateComponent } from './tasks/quick-create/quick-create.componen
     TaskListComponent,
     CompletedTaskListComponent,
     TaskDetailComponent,
-    QuickCreateComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
