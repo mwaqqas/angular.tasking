@@ -1,6 +1,7 @@
-# Tasking
+# Tasking Management Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.3.
+Created in order to learn how to use Angular to create responsive applications. 
+Demo can be found on: [Youtube](https://youtu.be/8IhMwhE_S9w)
 
 ## Development server
 
